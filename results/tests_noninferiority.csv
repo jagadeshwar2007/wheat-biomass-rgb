@@ -1,0 +1,2 @@
+light,best,rel_increase,lo,hi,margin,non_inferior
+mobilenetv3,resnet50,0.5351661065419233,0.25039590211707985,0.894912682791919,0.1,False

@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Data and large outputs (download the dataset yourself; see README)
+code/data/
+code/outputs/
+*.pt
+*.zip
+*.tif
+*.tiff
