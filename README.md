@@ -45,7 +45,8 @@ A full run takes about 2 hours on an RTX 4050 laptop GPU. `python run_all.py --q
 ## Repository layout
 
 ```
-code/      experiment scripts (step0–step6, run_all.py), aov_by_stage.py (per-stage Grad-CAM analysis)
+code/      experiment scripts (step0–step6, run_all.py), aov_by_stage.py (per-stage Grad-CAM analysis),
+           step7_temporal_resnet.py (multi-temporal ResNet-50 with temporal attention), step8_temporal_analysis.py
 results/   result tables (CSV) and figures (PNG) from the full run
 ```
 
