@@ -20,6 +20,31 @@ We compare ridge, Random Forest and XGBoost on handcrafted colour/texture featur
 
 All tables and figures are in [`results/`](results/). Per-seed means and SDs are in `results/table_main.csv`.
 
+## Multi-temporal ResNet-50 (step7, step8)
+
+A ResNet-50 that combines a plot's current image with its earlier-stage images (temporal attention plus a flight-date encoding), compared with recent single-image baselines on the same plot-grouped folds (seed-averaged predictions, 95% cluster-bootstrap CI):
+
+| Model | RMSE (kg/ha) [95% CI] | R² | R² unseen cultivar |
+|---|---|---|---|
+| Swin-T | 768 [673, 861] | 0.92 | 0.61 |
+| ConvNeXt-T | 773 [675, 876] | 0.92 | 0.69 |
+| MT-ResNet-50 (temporal attention) | 786 [674, 904] | 0.92 | 0.64 |
+| MT-ResNet-50, no history (ablation) | 780 [665, 892] | 0.92 | – |
+| ResNet-50 | 852 [722, 984] | 0.90 | 0.61 |
+| DINOv2-B (frozen) | 989 [848, 1113] | 0.87 | 0.48 |
+| EfficientNetV2-S | 1076 [929, 1223] | 0.84 | 0.23 |
+
+The ablation shows that the earlier images did not reduce error on this dataset (no-history variant: +6 kg/ha, 95% CI −38 to 50). Tables are in [`results/temporal/`](results/temporal/), figures in `results/figures/` (`fig_mt_architecture.png`, `fig_temporal_by_stage.png`, `fig_attention.png`).
+
+Run after `run_all.py`:
+```
+python step7_temporal_resnet.py
+python step7_temporal_resnet.py --variants mt_resnet50 --protocols variety
+python step4_deep_models.py --models convnext_t swin_t efficientnetv2_s --protocols grouped variety
+python step5_evaluate.py
+python step8_temporal_analysis.py
+```
+
 ## Data
 
 Brazilian Wheat Dataset (L. Schreiber, Mendeley Data, doi:[10.17632/3ntkg88d4d.1](https://doi.org/10.17632/3ntkg88d4d.1), CC BY 4.0). The dataset is **not** included here; download it from Mendeley and unzip it, e.g. to `C:\wheat`.
@@ -47,7 +72,7 @@ A full run takes about 2 hours on an RTX 4050 laptop GPU. `python run_all.py --q
 ```
 code/      experiment scripts (step0–step6, run_all.py), aov_by_stage.py (per-stage Grad-CAM analysis),
            step7_temporal_resnet.py (multi-temporal ResNet-50 with temporal attention), step8_temporal_analysis.py
-results/   result tables (CSV) and figures (PNG) from the full run
+results/   result tables (CSV) and figures (PNG) from the full run; results/temporal/ for the multi-temporal model
 ```
 
 ## Citation
