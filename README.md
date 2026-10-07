@@ -29,7 +29,7 @@ A ResNet-50 that combines a plot's current image with its earlier-stage images (
 | Swin-T | 768 [673, 861] | 0.92 | 0.61 |
 | ConvNeXt-T | 773 [675, 876] | 0.92 | 0.69 |
 | MT-ResNet-50 (temporal attention) | 786 [674, 904] | 0.92 | 0.64 |
-| MT-ResNet-50, no history (ablation) | 780 [665, 892] | 0.92 | – |
+| MT-ResNet-50, no history (ablation) | 780 [670, 889] | 0.92 | – |
 | ResNet-50 | 852 [722, 984] | 0.90 | 0.61 |
 | DINOv2-B (frozen) | 989 [848, 1113] | 0.87 | 0.48 |
 | EfficientNetV2-S | 1076 [929, 1223] | 0.84 | 0.23 |
