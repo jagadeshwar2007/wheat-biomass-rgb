@@ -6,6 +6,9 @@ Models (pretrained weights downloaded once by timm from Hugging Face):
   mobilenetv3     - MobileNetV3-Large (ImageNet), fully fine-tuned     [lightweight model]
   dinov2_s        - DINOv2 ViT-S/14, frozen features + ridge head        [transformer, frozen]
   dinov2_b        - DINOv2 ViT-B/14, frozen features + ridge head
+  convnext_t      - ConvNeXt-Tiny (ImageNet-22k -> 1k), fully fine-tuned  [modern CNN]
+  swin_t          - Swin Transformer Tiny (ImageNet-22k -> 1k), fully fine-tuned  [transformer]
+  efficientnetv2_s - EfficientNetV2-S (ImageNet-21k -> 1k), fully fine-tuned
 Add --mask to feed images with non-vegetation (soil) pixels set to black (segmentation ablation).
 
 Targets are log1p(biomass), standardised on the training fold; predictions are back-transformed.
@@ -29,6 +32,9 @@ TIMM_NAMES = {
     "mobilenetv3": "mobilenetv3_large_100.ra_in1k",
     "dinov2_s": "vit_small_patch14_dinov2.lvd142m",
     "dinov2_b": "vit_base_patch14_dinov2.lvd142m",
+    "convnext_t": "convnext_tiny.fb_in22k_ft_in1k",
+    "swin_t": "swin_tiny_patch4_window7_224.ms_in22k_ft_in1k",
+    "efficientnetv2_s": "tf_efficientnetv2_s.in21k_ft_in1k",
 }
 FROZEN = {"dinov2_s", "dinov2_b"}
 IMG = int(os.environ.get("BIOMASS_IMG", 224))  # override only for smoke tests
